@@ -44,11 +44,13 @@ android {
         free {
             applicationIdSuffix '.free'
             versionNameSuffix '.free'
+            buildConfigField "String", "BUILD_FLAVOR", "\"FREE\""
         }
 
         pro {
             applicationIdSuffix '.pro'
             versionNameSuffix '.pro'
+            buildConfigField "String", "BUILD_FLAVOR", "\"PRO\""
         }
     }
 
