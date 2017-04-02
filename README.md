@@ -80,3 +80,67 @@ example:
 
 Manifest can also be overriden by each build variant. So you can manually specify permissions, feature enable, .... for each version
 
+# Specify signing config for each build type
+
+```java
+android {
+    signingConfigs {
+            release {
+                storeFile file("../releasekey.jks")
+                storePassword "gradlebuildprocess"
+                keyAlias "gradlebuildprocess"
+                keyPassword "gradlebuildprocess"
+            }
+
+            releasevn {
+                storeFile file("../releasekeyvn.jks")
+                storePassword "gradlebuildprocess"
+                keyAlias "gradlebuildprocess"
+                keyPassword "gradlebuildprocess"
+            }
+        }
+}
+```
+
+# Create build types
+
+```java
+android {
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            applicationIdSuffix '.debug'
+        }
+
+        vietnamdebug {
+            applicationIdSuffix '.vndebug'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+```
+
+# Create product flavors
+
+```java
+android {
+    productFlavors {
+        free {
+            applicationIdSuffix '.free'
+            versionNameSuffix '.free'
+            buildConfigField "String", "BUILD_FLAVOR", "\"FREE\""  // <--- custom field for flavor
+        }
+
+        pro {
+            applicationIdSuffix '.pro'
+            versionNameSuffix '.pro'
+            buildConfigField "String", "BUILD_FLAVOR", "\"PRO\"" // <---- custom field for flavor
+        }
+    }
+}
+```
