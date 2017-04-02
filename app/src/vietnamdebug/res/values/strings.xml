@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Vietnam GradleBuildProcess</string>
+    <string name="source_set_description">vietnamdebug source set</string>
+</resources>

@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">GradleBuildProcess</string>
-    <string name="source_set_description">main source set</string>
+    <string name="source_set_description">release source set</string>
 </resources>

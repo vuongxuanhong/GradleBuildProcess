@@ -11,12 +11,47 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
+    signingConfigs {
+        release {
+            storeFile file("../releasekey.jks")
+            storePassword "gradlebuildprocess"
+            keyAlias "gradlebuildprocess"
+            keyPassword "gradlebuildprocess"
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            applicationIdSuffix '.debug'
+        }
+
+        vietnamdebug {
+            applicationIdSuffix '.vndebug'
+            signingConfig signingConfigs.release
         }
     }
+
+    productFlavors {
+        free {
+            applicationIdSuffix '.free'
+            versionNameSuffix '.free'
+        }
+
+        pro {
+            applicationIdSuffix '.pro'
+            versionNameSuffix '.pro'
+        }
+    }
+
 }
 
 dependencies {
@@ -24,6 +59,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 }
